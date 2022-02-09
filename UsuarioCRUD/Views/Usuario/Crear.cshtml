@@ -1,0 +1,117 @@
+﻿@model UsuarioCRUD.Models.Usuario
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="width:100%">
+    <div class="col-6">
+        <h2 class="text-primary">Lista de Usuarios</h2>
+    </div>
+    <div class="col-4 text-right">
+        <button type="button" onclick="limpiar()" class="btn btn-info form-control" data-toggle="modal" data-target="#myModal">Crear un nuevo Usuario</button>
+    </div>
+</div>
+
+<div class="p-4 border rounded bg-light">
+    <table id="tblData" class="table table-bordered table-responsive-xl" style="width:95%">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Codigo Postal</th>
+                <th>Tipo de Usuario</th>
+                <th>Estado</th>
+                <th>Ciudad</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h2 class="modal-title text-primary text-center">Registro de Usiarios</h2>
+                    <button type="button" class=close data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="padding-left:8%; padding-right:8%; padding-bottom:30px;">
+                        <div class="row p-3 border-0">
+                            <div asp-validation-summary=ModelOnly class="text-danger"></div>
+                        </div>
+                        <input type="hidden" id="usuarioId" asp-for="Id"/>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Nombres</label>
+                                <input asp-for="Nombre" id="usuarioNombre" class="form-control" placeholder="Nombres"/>
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Apellido</label>
+                                <input asp-for="Apellido" id="usuarioApellido" class="form-control" placeholder="Apellido"/>
+                                <span asp-validation-for="Apellido" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Direccion</label>
+                            <input asp-for="Direccion" id="usuarioDireccion" class="form-control" placeholder="Direccion"/>
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Codigo postal</label>
+                                <input asp-for="CodigoP" id="usuarioCodigoP" class="form-control" placeholder="Codigo postal"/>
+                                <span asp-validation-for="CodigoP" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Telefono</label>
+                                <input asp-for="Telefono" id="usuarioTelefono" class="form-control" placeholder="Telefono"/>
+                                <span asp-validation-for="Telefono" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Tipo de Usuario</label>
+                                <input asp-for="Tipo_Usuario" id="usuarioTipo" class="form-control" placeholder="Tipo de Usuario"/>
+                                <span asp-validation-for="Tipo_Usuario" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Estado</label>
+                                <select asp-for="Estado" id="usuarioEstado" class="form-control">
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Ciudad</label>
+                                <select asp-for="Ciudad" id="usuarioCiudad" class="form-control">
+                                    <option value="Hermosillo">Hermosillo</option>
+                                    <option value="Culiacan">Culiacan</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class=" btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+        <script src="~/js/Usuario.js"></script>
+}
